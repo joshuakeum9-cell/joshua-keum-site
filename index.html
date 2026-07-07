@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Joshua Keum · Portfolio</title>
+  <meta name="description" content="Portfolio of Joshua Keum, finance student at Baruch College. Selected work, writing, and what I'm building now." />
+
+  <!-- Fonts: Newsreader (institutional display serif) + IBM Plex Sans (analytical UI) + IBM Plex Mono (data labels) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600;6..72,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css?v=4" />
+</head>
+<body>
+
+  <!-- ===== STICKY NAV ===== -->
+  <header class="nav" id="top">
+    <div class="nav__inner">
+      <a href="#top" class="nav__brand">Joshua Keum<span class="dot">.</span></a>
+      <nav class="nav__links" id="navLinks">
+        <a href="#featured">Featured</a>
+        <a href="#work">Work</a>
+        <a href="#writing">Writing</a>
+        <a href="#now">Now</a>
+        <a href="#about">About</a>
+        <a href="#contact" class="nav__cta">Contact</a>
+      </nav>
+      <button class="nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero">
+      <div class="hero__inner">
+        <p class="eyebrow">Joshua Keum · Finance &amp; Strategy · Baruch College</p>
+        <h1 class="hero__headline">
+          When the brief is a mess, I bring
+          <em>clarity under collapse</em>.
+        </h1>
+        <p class="hero__sub">
+          I do my sharpest work when a problem is messy and nobody's sure what
+          the answer is. I'm a finance student at Baruch (Zicklin, 3.97 GPA)
+          heading into consulting. I recently spent weeks diagnosing UPS's plan
+          to cut Amazon volume to protect its margins, working straight from
+          public filings, and found the margin math isn't working yet. That's
+          the diagnosis work I want to do on an advisory team.
+        </p>
+        <div class="hero__links">
+          <a class="btn btn--solid" href="https://www.linkedin.com/in/joshua-keum/" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn" href="https://github.com/joshuakeum9-cell" target="_blank" rel="noopener">GitHub</a>
+          <a class="btn" href="mailto:joshuakeum9@gmail.com">Email</a>
+          <a class="btn btn--ghost" href="joshua-keum-resume.pdf" target="_blank" rel="noopener">Résumé ↗</a>
+        </div>
+      </div>
+      <div class="hero__marquee" aria-hidden="true">
+        <div class="marquee__track">
+          <span>Selected Work</span><span>•</span><span>Writing</span><span>•</span>
+          <span>Now / Build Log</span><span>•</span><span>Let's Talk</span><span>•</span>
+          <span>Selected Work</span><span>•</span><span>Writing</span><span>•</span>
+          <span>Now / Build Log</span><span>•</span><span>Let's Talk</span><span>•</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FEATURED PROJECT ===== -->
+    <section class="section featured" id="featured">
+      <div class="section__head">
+        <span class="section__index">01</span>
+        <h2 class="section__title">Featured project</h2>
+      </div>
+
+      <div class="featured__grid">
+        <div class="featured__copy">
+          <p class="kicker">Featured engagement</p>
+          <h3 class="featured__name">UPS: Is the volume-for-margin trade working?</h3>
+          <p class="featured__lede">
+            UPS is deliberately walking away from its largest but lowest-margin
+            customer, cutting Amazon volume to lift margins. Working straight from
+            public filings, I diagnosed whether the trade is working and packaged
+            it the way an advisory team would: answer first, then the support.
+          </p>
+          <ul class="featured__facts">
+            <li><strong>Role</strong> Independent operational diagnosis</li>
+            <li><strong>Timeline</strong> 2026, in progress</li>
+            <li><strong>Sources</strong> 10-K, 10-Qs, earnings calls (SEC EDGAR)</li>
+            <li><strong>Verdict</strong> Right call, but the margin math isn't working yet</li>
+          </ul>
+          <a class="btn btn--solid" href="#">Read the memo ↗</a>
+        </div>
+
+        <!-- INTERACTIVE SIGNATURE PIECE: the UPS diagnosis exhibit, live -->
+        <div class="featured__interactive" id="signature">
+          <div class="exhibit">
+            <header class="exhibit__head">
+              <span class="exhibit__kicker">Exhibit 1 · Interactive</span>
+              <h4 class="exhibit__title">The trade, in one picture</h4>
+              <p class="exhibit__sub">Revenue per piece rose every quarter, yet adjusted margin fell to 4.0% from 7.0% a year earlier. Hover or tap a quarter.</p>
+            </header>
+            <div class="exhibit__legend" id="exhibitLegend">
+              <button class="legend__btn" data-series="volume"><i style="background:#E8B04B"></i>Avg daily volume <small>(% YoY)</small></button>
+              <button class="legend__btn" data-series="rpp"><i style="background:#FAF8F4"></i>Revenue / piece <small>(% YoY)</small></button>
+              <button class="legend__btn" data-series="margin"><i style="background:#FF8B66"></i>Adj. op margin <small>(%)</small></button>
+            </div>
+            <svg id="exhibitChart" viewBox="0 0 560 290" role="img" aria-label="Interactive chart: UPS US Domestic volume falling year over year, revenue per piece rising, adjusted operating margin declining, Q1 2025 through Q1 2026"></svg>
+            <p class="exhibit__readout" id="exhibitReadout">US Domestic Package, Q1 '25–Q1 '26 · Source: UPS quarterly earnings releases.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SELECTED WORK ===== -->
+    <section class="section section--tint work" id="work">
+      <div class="section__head">
+        <span class="section__index">02</span>
+        <h2 class="section__title">Selected work</h2>
+        <p class="section__note">Every card follows the same shape: Problem → Approach → What I built → Result.</p>
+      </div>
+
+      <div class="work__grid" id="workGrid">
+        <!-- CARD TEMPLATE (repeated). Add more later by copying one card. -->
+        <article class="card">
+          <header class="card__head">
+            <span class="card__tag">Business Development</span>
+            <h3 class="card__title">Bridge Philanthropic Consulting</h3>
+          </header>
+          <dl class="card__body">
+            <div><dt>Problem</dt><dd>An advisory client needed to grow its base of donors and partners, but prospect research was slow, manual, and hard to scale.</dd></div>
+            <div><dt>Approach</dt><dd>Studied the funding landscape and competitive dynamics, restructured the research process, and brought AI into the grind.</dd></div>
+            <div><dt>What I built</dt><dd>A sourced pipeline of prospective donors and partners, plus an AI-assisted research and pitch workflow the team could reuse.</dd></div>
+            <div><dt>Result</dt><dd>A repeatable sourcing engine and faster, sharper prep. <em>(Business Development Intern, 2026)</em></dd></div>
+          </dl>
+          <a class="card__link" href="#">Details ↗</a>
+        </article>
+
+        <article class="card">
+          <header class="card__head">
+            <span class="card__tag">M&amp;A / Strategy</span>
+            <h3 class="card__title">SodaStream M&amp;A Analysis</h3>
+          </header>
+          <dl class="card__body">
+            <div><dt>Problem</dt><dd>A major acquisition needed pressure-testing: was the deal thesis sound, and where should the combined business grow?</dd></div>
+            <div><dt>Approach</dt><dd>As a Business Analyst with TAMID at Baruch, ran valuation and M&amp;A analysis and stress-tested the strategic rationale.</dd></div>
+            <div><dt>What I built</dt><dd>A deal breakdown with recommendations on expansion and distribution strategy for the combined company.</dd></div>
+            <div><dt>Result</dt><dd>Clear go-forward recommendations on where to expand and how to distribute. <em>(Business Analyst, TAMID at Baruch, 2025–present)</em></dd></div>
+          </dl>
+          <a class="card__link" href="#">Details ↗</a>
+        </article>
+
+        <article class="card">
+          <header class="card__head">
+            <span class="card__tag">Private Equity</span>
+            <h3 class="card__title">Project Destined: PE Real Estate</h3>
+          </header>
+          <dl class="card__body">
+            <div><dt>Problem</dt><dd>Evaluate whether real-estate acquisitions across growing markets were actually worth the capital.</dd></div>
+            <div><dt>Approach</dt><dd>Modeling and valuation training led by PE professionals, applied to live case studies.</dd></div>
+            <div><dt>What I built</dt><dd>Financial models and deal analyses across 3 team case studies and 1 individual case competition.</dd></div>
+            <div><dt>Result</dt><dd>Acquisition recommendations weighing profitability, leverage, and capital structure. <em>(PE Real Estate Intern, 2025)</em></dd></div>
+          </dl>
+          <a class="card__link" href="#">Details ↗</a>
+        </article>
+
+        <article class="card">
+          <header class="card__head">
+            <span class="card__tag">Data Analytics</span>
+            <h3 class="card__title">YAEL Bio Lab</h3>
+          </header>
+          <dl class="card__body">
+            <div><dt>Problem</dt><dd>Marketing spend wasn't converting; budget was going to underperforming outreach.</dd></div>
+            <div><dt>Approach</dt><dd>Ran data-driven A/B tests and read Google Analytics to find what actually worked.</dd></div>
+            <div><dt>What I built</dt><dd>A reallocation plan and a set of actionable insights presented to upper management.</dd></div>
+            <div><dt>Result</dt><dd>Significantly higher website engagement and a meaningfully lower user-acquisition cost. <em>(Data Analytics Intern, 2025)</em></dd></div>
+          </dl>
+          <a class="card__link" href="#">Details ↗</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== WRITING ===== -->
+    <section class="section writing" id="writing">
+      <div class="section__head">
+        <span class="section__index">03</span>
+        <h2 class="section__title">Writing</h2>
+      </div>
+
+      <div class="writing__list">
+        <a class="post" href="https://londonclimatetech.substack.com/p/the-great-london-climate-action-week" target="_blank" rel="noopener">
+          <span class="post__date">Jun 2026 · Substack</span>
+          <h3 class="post__title">The Great London Climate Action Week 2026 Guide</h3>
+          <p class="post__excerpt">Co-authored guide to 1,000+ events across London's flagship climate week, researched and verified with AI-assisted workflows and organized into 26 categories.</p>
+          <span class="post__arrow">Read →</span>
+        </a>
+        <!-- TEMPLATE: copy this block to add another piece of writing.
+        <a class="post" href="URL_HERE" target="_blank" rel="noopener">
+          <span class="post__date">Mon YYYY · Where</span>
+          <h3 class="post__title">Title here</h3>
+          <p class="post__excerpt">One-line preview here.</p>
+          <span class="post__arrow">Read →</span>
+        </a>
+        -->
+      </div>
+    </section>
+
+    <!-- ===== NOW / BUILD LOG ===== -->
+    <section class="section section--tint now" id="now">
+      <div class="section__head">
+        <span class="section__index">04</span>
+        <h2 class="section__title">Now / build log</h2>
+        <p class="section__note">A dated, living log of what I'm working on.</p>
+      </div>
+
+      <ol class="log">
+        <li class="log__item">
+          <time class="log__date">Jul 2026</time>
+          <p>Rebuilt this portfolio from scratch: a hand-tuned static site designed to read like advisory work, built collaboratively with Claude Code.</p>
+        </li>
+        <li class="log__item">
+          <time class="log__date">May 2026</time>
+          <p>Wrapped my Business Development internship at Bridge Philanthropic Consulting after building out its donor and partner pipeline.</p>
+        </li>
+        <li class="log__item">
+          <time class="log__date">Jan 2026</time>
+          <p>Selected for the BNP Paribas Sophomore Opportunity Summit, with team case work presented to BNP analysts and recruiters.</p>
+        </li>
+      </ol>
+    </section>
+
+    <!-- ===== BUILT WITH CLAUDE CODE ===== -->
+    <section class="section builtwith">
+      <div class="builtwith__card">
+        <p class="kicker">Behind the scenes</p>
+        <h2 class="builtwith__title">How I built this site with Claude&nbsp;Code</h2>
+        <p>
+          This site is a hand-tuned static page (plain HTML, CSS, and a touch of
+          JavaScript) that I built collaboratively with Claude Code, describing
+          what I wanted in plain English and refining it together. No template,
+          no page builder. We'll write the real story here once it's done.
+        </p>
+      </div>
+    </section>
+
+    <!-- ===== ABOUT ===== -->
+    <section class="section about" id="about">
+      <div class="section__head">
+        <span class="section__index">05</span>
+        <h2 class="section__title">About</h2>
+      </div>
+
+      <div class="about__grid">
+        <div class="about__photo">
+          <div class="headshot" id="headshot">
+            <span>Headshot</span>
+            <small>Your photo goes here</small>
+          </div>
+        </div>
+        <div class="about__copy">
+          <p class="about__lede">
+            I'm a finance student at Baruch College's Zicklin School of Business
+            (3.97 GPA, Dean's List, Zicklin Undergraduate Honors Program),
+            heading into management consulting and advisory work.
+          </p>
+          <p>
+            Across private equity, business development, and data analytics
+            internships, plus independent diagnosis work like my UPS memo, I've
+            learned to do one thing well: take a messy business problem I don't
+            own, structure it, and turn it into a recommendation someone can
+            defend. I lean on AI to move faster without cutting corners on the
+            analysis.
+          </p>
+          <p>
+            Outside of work you'll find me on the basketball court or at the piano.
+            I'm also into strength training, hiking, ping pong, guitar, and chess.
+          </p>
+
+          <h3 class="skills__heading">Skills &amp; tools</h3>
+          <ul class="skills">
+            <li>Financial modeling</li>
+            <li>Valuation</li>
+            <li>M&amp;A analysis</li>
+            <li>FP&amp;A</li>
+            <li>Bloomberg (BMC)</li>
+            <li>S&amp;P Capital IQ</li>
+            <li>Excel / MS Office</li>
+            <li>Data analytics &amp; A/B testing</li>
+            <li>AI-assisted research</li>
+            <li>Korean (Proficient)</li>
+          </ul>
+
+          <h3 class="skills__heading">Certificates &amp; programs</h3>
+          <ul class="skills">
+            <li>McKinsey Forward</li>
+            <li>BCG Strategy Consulting Simulation</li>
+            <li>PwC Management Consulting Simulation</li>
+            <li>Expedition EY</li>
+            <li>Bloomberg Market Concepts</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== CONTACT FOOTER ===== -->
+  <footer class="contact" id="contact">
+    <div class="contact__inner">
+      <p class="kicker">Contact</p>
+      <h2 class="contact__headline">Let's talk.</h2>
+      <p class="contact__sub">The best way to reach me is below. I read everything.</p>
+      <div class="contact__links">
+        <a class="btn btn--solid" href="mailto:joshuakeum9@gmail.com">Email me</a>
+        <a class="btn" href="https://www.linkedin.com/in/joshua-keum/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn" href="https://github.com/joshuakeum9-cell" target="_blank" rel="noopener">GitHub</a>
+      </div>
+      <p class="contact__fine">© <span id="year"></span> Joshua Keum · Built with Claude Code</p>
+    </div>
+  </footer>
+
+  <script src="script.js?v=6"></script>
+</body>
+</html>
