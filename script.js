@@ -23,6 +23,21 @@ if (navToggle && navLinks) {
   });
 }
 
+// --- Marquee: keep the rolling band full on any screen width ---
+// The track must be at least 2x the viewport wide, or the words run out
+// and the band goes blank until the loop restarts. Clone until safe.
+(function () {
+  const band = document.querySelector(".hero__marquee");
+  const track = document.querySelector(".marquee__track");
+  if (!band || !track) return;
+  const original = track.innerHTML;
+  let guard = 0;
+  while (track.scrollWidth < band.offsetWidth * 2 && guard < 8) {
+    track.innerHTML += original;
+    guard += 1;
+  }
+})();
+
 // --- Signature piece: UPS diagnosis exhibit (interactive SVG chart) ---
 // All figures verified against UPS quarterly earnings releases /
 // earnings calls (US Domestic Package segment, Q1 2025 – Q1 2026):
@@ -38,11 +53,11 @@ if (navToggle && navLinks) {
   const labels = ["Q1 '25", "Q2 '25", "Q3 '25", "Q4 '25", "Q1 '26"];
   const notes = ["", "", "", "holiday peak", ""];
   const series = {
-    volume: { name: "Volume", color: "#E8B04B", unit: "% YoY",
+    volume: { name: "Volume", color: "#ffad9b", unit: "% YoY",
               data: [-3.5, -7.3, -12.3, -10.8, -8.0] },
-    rpp:    { name: "Rev/piece", color: "#FAF8F4", unit: "% YoY",
+    rpp:    { name: "Rev/piece", color: "#ffffff", unit: "% YoY",
               data: [4.5, 5.5, 9.8, 8.3, 6.5] },
-    margin: { name: "Adj. margin", color: "#FF8B66", unit: "%",
+    margin: { name: "Adj. margin", color: "#ff7759", unit: "%",
               data: [7.0, 7.0, 6.4, 10.2, 4.0] }
   };
 
@@ -64,11 +79,11 @@ if (navToggle && navLinks) {
     const isZero = v === 0;
     svg.appendChild(el("line", {
       x1: PAD.l, y1: y(v), x2: W - PAD.r, y2: y(v),
-      stroke: isZero ? "rgba(250,249,246,.4)" : "rgba(250,249,246,.12)",
+      stroke: isZero ? "rgba(255,255,255,.4)" : "rgba(255,255,255,.12)",
       "stroke-width": isZero ? 1.5 : 1
     }));
     const t = el("text", { x: PAD.l - 8, y: y(v) + 4, "text-anchor": "end",
-      fill: "rgba(250,249,246,.5)", "font-size": 11,
+      fill: "rgba(255,255,255,.5)", "font-size": 11,
       "font-family": "IBM Plex Mono, monospace" });
     t.textContent = (v > 0 ? "+" : "") + v + "%";
     svg.appendChild(t);
@@ -77,7 +92,7 @@ if (navToggle && navLinks) {
   // Quarter labels
   labels.forEach((lab, i) => {
     const t = el("text", { x: x(i), y: H - 12, "text-anchor": "middle",
-      fill: "rgba(250,249,246,.55)", "font-size": 11,
+      fill: "rgba(255,255,255,.55)", "font-size": 11,
       "font-family": "IBM Plex Mono, monospace" });
     t.textContent = lab;
     svg.appendChild(t);
@@ -100,7 +115,7 @@ if (navToggle && navLinks) {
 
   // Hover / tap: one hit zone per quarter
   const marker = el("line", { y1: PAD.t, y2: PAD.t + plotH,
-    stroke: "rgba(199,154,74,.9)", "stroke-width": 1.5, opacity: 0 });
+    stroke: "rgba(255,173,155,.9)", "stroke-width": 1.5, opacity: 0 });
   svg.appendChild(marker);
   const baseText = readout.textContent;
 
