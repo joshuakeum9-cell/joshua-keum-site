@@ -38,6 +38,71 @@ if (navToggle && navLinks) {
   }
 })();
 
+// --- DealDesk console: shows how the tool tailors output per practice ---
+// Mirrors the three practices in the live tool's rules engine.
+(function () {
+  const btnWrap = document.getElementById("practiceBtns");
+  const fileList = document.getElementById("consoleFiles");
+  const readout = document.getElementById("consoleReadout");
+  if (!btnWrap || !fileList || !readout) return;
+
+  const practices = {
+    strategy: {
+      readout: "Weighted toward growth, market position, and where the combined business should compete.",
+      files: [
+        ["Business summary", "docx", "Company overview, financial summary, recent news, and key people."],
+        ["Interview guide", "docx", "Questions built around growth levers and competitive position."],
+        ["Opportunity deck", "pptx", "Where to play and how to win, with an appendix matrix."],
+        ["Excel model", "xlsx", "Projections plus a value creation view you can edit."]
+      ]
+    },
+    operations: {
+      readout: "Weighted toward capacity, cost programs, and the margin math underneath them.",
+      files: [
+        ["Business summary", "docx", "Overview with the cost structure and margin trend up front."],
+        ["Interview guide", "docx", "Questions built around network capacity and cost programs."],
+        ["Opportunity deck", "pptx", "Efficiency moves ranked by impact and ease of execution."],
+        ["Excel model", "xlsx", "Cost lines held at current ratios, with savings scenarios."]
+      ]
+    },
+    ma: {
+      readout: "Weighted toward deal thesis, synergy ranges, and valuation sensitivity.",
+      files: [
+        ["Business summary", "docx", "Target overview written for a deal team, answer first."],
+        ["Interview guide", "docx", "Diligence questions tailored to the deal type."],
+        ["Synergy deck", "pptx", "Qualitative synergies with a summary slide that signposts the rest."],
+        ["Excel model", "xlsx", "Three synergy scenarios and a valuation sensitivity grid."]
+      ]
+    }
+  };
+
+  function render(key) {
+    const p = practices[key];
+    fileList.innerHTML = p.files
+      .map(function (f) {
+        return (
+          '<li><span class="file__name">' + f[0] + "</span>" +
+          '<span class="file__ext">.' + f[1] + "</span>" +
+          '<span class="file__desc">' + f[2] + "</span></li>"
+        );
+      })
+      .join("");
+    readout.textContent = p.readout;
+  }
+
+  btnWrap.querySelectorAll(".practice__btn").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      btnWrap.querySelectorAll(".practice__btn").forEach(function (b) {
+        b.classList.remove("is-active");
+      });
+      btn.classList.add("is-active");
+      render(btn.dataset.practice);
+    });
+  });
+
+  render("strategy");
+})();
+
 // --- Signature piece: UPS diagnosis exhibit (interactive SVG chart) ---
 // All figures verified against UPS quarterly earnings releases /
 // earnings calls (US Domestic Package segment, Q1 2025 – Q1 2026):

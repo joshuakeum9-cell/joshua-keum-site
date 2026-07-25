@@ -290,12 +290,75 @@ em { font-style: normal; color: var(--coral); }
   text-transform: uppercase;
 }
 
+.featured__grid + .featured__grid { margin-top: clamp(3rem, 7vw, 5.5rem); }
+.featured__grid--reverse .featured__copy { order: 2; }
+.featured__grid--reverse .featured__interactive { order: 1; }
+.featured__actions { display: flex; flex-wrap: wrap; gap: .6rem; }
+
 .featured__interactive {
   border-radius: var(--r-lg);
   background: var(--deep-green);
   display: flex;
   min-height: 340px;
   padding: 1.4rem;
+}
+
+/* Interactive console: DealDesk practice switcher */
+.console {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: .8rem .6rem .4rem;
+  color: #ffffff;
+  min-width: 0;
+}
+.console__practices { display: flex; flex-wrap: wrap; gap: .45rem; }
+.practice__btn {
+  font-family: var(--font-ui);
+  font-size: .8rem;
+  font-weight: 500;
+  color: rgba(255,255,255,.85);
+  background: transparent;
+  border: 1px solid rgba(255,255,255,.28);
+  border-radius: 9999px;
+  padding: .45em 1.1em;
+  cursor: pointer;
+  transition: background .2s, color .2s, border-color .2s;
+}
+.practice__btn:hover { border-color: rgba(255,255,255,.6); }
+.practice__btn.is-active {
+  background: #ffffff;
+  border-color: #ffffff;
+  color: var(--deep-green);
+}
+.console__files { list-style: none; display: grid; gap: 0; }
+.console__files li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: .3rem 1rem;
+  align-items: baseline;
+  padding: .7rem 0;
+  border-top: 1px solid rgba(255,255,255,.16);
+}
+.console__files li:last-child { border-bottom: 1px solid rgba(255,255,255,.16); }
+.file__name { font-size: .92rem; color: #ffffff; }
+.file__ext {
+  font-family: var(--font-mono);
+  font-size: .66rem;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--coral-soft);
+  border: 1px solid rgba(255,173,155,.5);
+  border-radius: var(--r-xs);
+  padding: .1em .5em;
+  justify-self: start;
+}
+.file__desc {
+  grid-column: 1 / -1;
+  font-size: .8rem;
+  line-height: 1.45;
+  color: rgba(255,255,255,.68);
 }
 
 /* Signature piece: the interactive exhibit (dark product band) */
@@ -552,6 +615,8 @@ em { font-style: normal; color: var(--coral); }
   .nav__links a { font-size: 1.1rem; }
 
   .featured__grid { grid-template-columns: 1fr; }
+  .featured__grid--reverse .featured__copy,
+  .featured__grid--reverse .featured__interactive { order: 0; }
   .work__grid { grid-template-columns: 1fr; }
   .about__grid { grid-template-columns: 1fr; }
   .about__photo { max-width: 280px; }

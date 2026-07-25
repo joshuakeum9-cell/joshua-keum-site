@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="styles.css?v=8" />
+  <link rel="stylesheet" href="styles.css?v=9" />
 </head>
 <body>
 
@@ -21,9 +21,9 @@
       <a href="#top" class="nav__brand">Joshua Keum<span class="dot">.</span></a>
       <nav class="nav__links" id="navLinks">
         <a href="#featured">Featured</a>
-        <a href="#work">Work</a>
-        <a href="#writing">Writing</a>
-        <a href="#now">Now</a>
+        <a href="#work">Portfolio</a>
+        <a href="#writing">Insights</a>
+        <a href="#now">Build log</a>
         <a href="#about">About</a>
         <a href="#contact" class="nav__cta">Contact</a>
       </nav>
@@ -40,17 +40,18 @@
       <div class="hero__inner">
         <p class="eyebrow">Joshua Keum · Finance &amp; Strategy · Baruch College</p>
         <h1 class="hero__headline">
-          Most candidates show up with a résumé. I show up with
-          <em>things I've built</em>.
+          I turn the grindy parts of consulting work into
+          <em>tools</em>.
         </h1>
         <p class="hero__sub">
-          Nobody trained me to do this work; I taught myself. At my last
-          internship I picked up Claude on my own to build client
-          presentations, and they worked well enough that my manager asked for
-          my process. Now I'm a finance student at Baruch (Zicklin, 3.97 GPA)
-          heading into consulting, and I put the work where people can see it.
-          Latest: an operational diagnosis of UPS built straight from public
-          filings, with new work added regularly.
+          Nobody trained me to do this; I taught myself. At my last internship I
+          picked up Claude on my own to build client presentations, and they
+          worked well enough that my manager asked for my process. Since then
+          I've shipped DealDesk, a free tool that turns a company's financials
+          into four consulting deliverables, and an operational diagnosis of UPS
+          built straight from public filings. I'm a finance student at Baruch
+          (Zicklin, 3.97 GPA) heading into consulting, and I put the work where
+          people can see it.
         </p>
         <div class="hero__links">
           <a class="btn btn--solid" href="https://www.linkedin.com/in/joshua-keum/" target="_blank" rel="noopener">LinkedIn</a>
@@ -61,22 +62,67 @@
       </div>
       <div class="hero__marquee" aria-hidden="true">
         <div class="marquee__track">
-          <span>Selected Work</span><span>•</span><span>Writing</span><span>•</span>
-          <span>Now / Build Log</span><span>•</span><span>Let's Talk</span><span>•</span>
-          <span>Selected Work</span><span>•</span><span>Writing</span><span>•</span>
-          <span>Now / Build Log</span><span>•</span><span>Let's Talk</span><span>•</span>
+          <span>Featured Work</span><span>•</span><span>Portfolio</span><span>•</span>
+          <span>Insights</span><span>•</span><span>Build Log</span><span>•</span>
+          <span>Let's Talk</span><span>•</span>
         </div>
       </div>
     </section>
 
-    <!-- ===== FEATURED PROJECT ===== -->
+    <!-- ===== FEATURED WORK ===== -->
     <section class="section featured" id="featured">
       <div class="section__head">
         <span class="section__index">01</span>
-        <h2 class="section__title">Featured project</h2>
+        <h2 class="section__title">Featured work</h2>
+        <p class="section__note">A tool I built and shipped, and the diagnosis work behind it.</p>
       </div>
 
+      <!-- FEATURE 1: the automation tool -->
       <div class="featured__grid">
+        <div class="featured__copy">
+          <p class="kicker">Featured build</p>
+          <h3 class="featured__name">DealDesk: consulting deliverables, generated</h3>
+          <p class="featured__lede">
+            The slow part of consulting work isn't the thinking, it's producing
+            the deliverables. DealDesk takes a company's financials and generates
+            four of them: a business summary, an interview guide, a synergy deck,
+            and an Excel model with a draft email. It's free, needs no login, and
+            uses no AI in the product. Every output comes from a rules engine I
+            wrote and tested myself.
+          </p>
+          <ul class="featured__facts">
+            <li><strong>Role</strong> Designed, built, and shipped it myself</li>
+            <li><strong>Approach</strong> Rules engine plus browser-side document generation</li>
+            <li><strong>Modeled on</strong> PwC management consulting simulation formats</li>
+            <li><strong>Status</strong> Live, free, and open to anyone</li>
+          </ul>
+          <div class="featured__actions">
+            <a class="btn btn--solid" href="https://joshuakeum9-cell.github.io/dealdesk/" target="_blank" rel="noopener">Open the live tool ↗</a>
+            <a class="btn" href="https://joshuakeum9-cell.github.io/dealdesk/how-it-works.html" target="_blank" rel="noopener">How it works ↗</a>
+          </div>
+        </div>
+
+        <!-- INTERACTIVE: practice switcher mirroring the real tool -->
+        <div class="featured__interactive">
+          <div class="console">
+            <header>
+              <span class="exhibit__kicker">Live tool · Interactive</span>
+              <h4 class="exhibit__title">Pick a practice, see what it builds</h4>
+              <p class="exhibit__sub">DealDesk tailors its output to the kind of consultant you are. Choose one.</p>
+            </header>
+            <div class="console__practices" id="practiceBtns">
+              <button class="practice__btn is-active" data-practice="strategy">Strategy</button>
+              <button class="practice__btn" data-practice="operations">Operations</button>
+              <button class="practice__btn" data-practice="ma">Financial &amp; M&amp;A</button>
+            </div>
+            <ul class="console__files" id="consoleFiles"></ul>
+            <p class="exhibit__readout" id="consoleReadout"></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- FEATURE 2: the UPS diagnosis -->
+      <div class="featured__grid featured__grid--reverse">
         <div class="featured__copy">
           <p class="kicker">Featured engagement</p>
           <h3 class="featured__name">UPS: Is the volume-for-margin trade working?</h3>
@@ -119,7 +165,7 @@
     <section class="section section--tint work" id="work">
       <div class="section__head">
         <span class="section__index">02</span>
-        <h2 class="section__title">Selected work</h2>
+        <h2 class="section__title">Portfolio</h2>
         <p class="section__note">Every card follows the same shape: Problem → Approach → What I built → Result.</p>
       </div>
 
@@ -187,7 +233,7 @@
     <section class="section writing" id="writing">
       <div class="section__head">
         <span class="section__index">03</span>
-        <h2 class="section__title">Writing</h2>
+        <h2 class="section__title">Insights</h2>
       </div>
 
       <div class="writing__list">
@@ -212,11 +258,15 @@
     <section class="section section--tint now" id="now">
       <div class="section__head">
         <span class="section__index">04</span>
-        <h2 class="section__title">Now / build log</h2>
-        <p class="section__note">A dated, living log of what I'm working on.</p>
+        <h2 class="section__title">Build log</h2>
+        <p class="section__note">A dated, living record of what I'm shipping right now.</p>
       </div>
 
       <ol class="log">
+        <li class="log__item">
+          <time class="log__date">Jul 2026</time>
+          <p>Shipped DealDesk: a free tool that turns a company's financials into four consulting deliverables. No login, no AI in the product, and no cost to anyone who uses it. Now stress-testing it against real filings.</p>
+        </li>
         <li class="log__item">
           <time class="log__date">Jul 2026</time>
           <p>UPS diagnosis memo: v1 drafted and the core exhibit built from verified filings data. Now revising, then sharing it with practicing consultants for pushback. The full memo goes up here once it survives that.</p>
@@ -270,8 +320,15 @@
             heading into management consulting and advisory work.
           </p>
           <p>
+            I grew up in a family of small business owners, which is where the
+            interest started: I saw up close how much of running a business is
+            repetitive work that nobody has time for. That's what I go after now.
+            When I hit a process that's slow and manual, I build the tool that
+            handles it, then spend the saved time on the actual thinking.
+          </p>
+          <p>
             Across private equity, business development, and data analytics
-            internships, plus independent diagnosis work like my UPS memo, I've
+            internships, plus independent work like DealDesk and my UPS memo, I've
             learned to do one thing well: take a messy business problem I don't
             own, structure it, and turn it into a recommendation someone can
             defend. I lean on AI to move faster without cutting corners on the
@@ -292,6 +349,7 @@
             <li>S&amp;P Capital IQ</li>
             <li>Excel / MS Office</li>
             <li>Data analytics &amp; A/B testing</li>
+            <li>Workflow automation</li>
             <li>AI-assisted research</li>
             <li>Korean (Proficient)</li>
           </ul>
@@ -325,6 +383,6 @@
     </div>
   </footer>
 
-  <script src="script.js?v=8"></script>
+  <script src="script.js?v=9"></script>
 </body>
 </html>
