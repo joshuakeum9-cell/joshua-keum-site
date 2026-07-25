@@ -217,11 +217,11 @@ em { font-style: normal; color: var(--coral); }
 .hero__headline {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(2.6rem, 7.5vw, 5.4rem);
-  line-height: 1.02;
+  font-size: clamp(2.15rem, 5.4vw, 4.2rem);
+  line-height: 1.04;
   letter-spacing: -.022em;
   margin: 1.2rem 0;
-  max-width: 18ch;
+  max-width: 24ch;
   color: var(--primary);
 }
 .hero__sub {
