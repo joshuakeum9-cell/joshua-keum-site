@@ -241,13 +241,25 @@ if (navToggle && navLinks) {
     el.style.transitionDelay = (i % 3) * 70 + "ms";
   });
 
+  // Hiding is enabled only now that the script is running (see .js-reveal in CSS)
+  document.documentElement.classList.add("js-reveal");
+
   let pending = targets.slice();
   let ticking = false;
+
+  const revealAll = () => {
+    targets.forEach((el) => el.classList.add("in"));
+    pending = [];
+    window.removeEventListener("scroll", onScroll);
+    window.removeEventListener("resize", onScroll);
+  };
 
   const check = () => {
     ticking = false;
     const limit = window.innerHeight - 50;
     pending = pending.filter((el) => {
+      // Reveal anything at or above the fold line, including elements
+      // already scrolled past (negative top).
       if (el.getBoundingClientRect().top < limit) {
         el.classList.add("in");
         return false;
@@ -269,6 +281,11 @@ if (navToggle && navLinks) {
   window.addEventListener("scroll", onScroll, { passive: true });
   window.addEventListener("resize", onScroll, { passive: true });
   check(); // reveal anything already in view on load
+
+  // Failsafe: whatever has not revealed within 4 seconds gets shown anyway,
+  // so a missed scroll event can never leave content invisible to a visitor.
+  setTimeout(revealAll, 4000);
+  window.addEventListener("beforeprint", revealAll);
 })();
 
 // --- Nav: soft shadow once the page is scrolled ---
