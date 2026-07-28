@@ -314,7 +314,6 @@ if (navToggle && navLinks) {
   const frame = document.getElementById("previewFrame");
   const title = document.getElementById("previewTitle");
   const note = document.getElementById("previewNote");
-  const openBtn = document.getElementById("previewOpen");
   const dlBtn = document.getElementById("previewDownload");
   const closeBtn = document.getElementById("previewClose");
   const triggers = document.querySelectorAll("a[data-preview]");
@@ -334,7 +333,6 @@ if (navToggle && navLinks) {
     lastFocus = trigger;
     const fileUrl = new URL(href, location.href).href;
     title.textContent = label;
-    openBtn.href = fileUrl;
     dlBtn.href = fileUrl;
     if (isLocal) {
       // The viewer cannot reach a local address; skip the frame in local testing.
