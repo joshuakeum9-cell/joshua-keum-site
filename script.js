@@ -305,6 +305,72 @@ if (navToggle && navLinks) {
   update();
 })();
 
+// --- Document preview: open deliverables in place instead of downloading ---
+// Word, Excel, and PowerPoint files are rendered by Microsoft's free public
+// document viewer, which needs a publicly reachable URL. On localhost (or if
+// the viewer is unavailable) the links fall back to opening the file normally.
+(function () {
+  const modal = document.getElementById("previewModal");
+  const frame = document.getElementById("previewFrame");
+  const title = document.getElementById("previewTitle");
+  const note = document.getElementById("previewNote");
+  const openBtn = document.getElementById("previewOpen");
+  const dlBtn = document.getElementById("previewDownload");
+  const closeBtn = document.getElementById("previewClose");
+  const triggers = document.querySelectorAll("a[data-preview]");
+  if (!modal || !frame || !triggers.length) return;
+
+  const isLocal = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname);
+  let lastFocus = null;
+
+  const close = () => {
+    modal.hidden = true;
+    frame.src = "about:blank";
+    document.body.classList.remove("preview-open");
+    if (lastFocus) lastFocus.focus();
+  };
+
+  const open = (href, label, trigger) => {
+    lastFocus = trigger;
+    const fileUrl = new URL(href, location.href).href;
+    title.textContent = label;
+    openBtn.href = fileUrl;
+    dlBtn.href = fileUrl;
+    if (isLocal) {
+      // The viewer cannot reach a local address; skip the frame in local testing.
+      note.innerHTML =
+        'Document previews render on the published site. <a href="' +
+        fileUrl +
+        '" target="_blank" rel="noopener">Open this file directly</a>.';
+      frame.src = "about:blank";
+    } else {
+      note.innerHTML =
+        'Loading the preview. If it does not appear, <a href="' +
+        fileUrl +
+        '" target="_blank" rel="noopener">open the file directly</a>.';
+      frame.src =
+        "https://view.officeapps.live.com/op/embed.aspx?src=" +
+        encodeURIComponent(fileUrl);
+    }
+    modal.hidden = false;
+    document.body.classList.add("preview-open");
+    closeBtn.focus();
+  };
+
+  triggers.forEach((a) => {
+    a.addEventListener("click", (e) => {
+      e.preventDefault();
+      open(a.getAttribute("href"), a.dataset.preview, a);
+    });
+  });
+
+  closeBtn.addEventListener("click", close);
+  modal.querySelector("[data-close]").addEventListener("click", close);
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && !modal.hidden) close();
+  });
+})();
+
 // --- Auto-update the footer year ---
 const yearEl = document.getElementById("year");
 if (yearEl) yearEl.textContent = new Date().getFullYear();

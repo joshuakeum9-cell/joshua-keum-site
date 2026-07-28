@@ -28,7 +28,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="styles.css?v=16" />
+  <link rel="stylesheet" href="styles.css?v=17" />
 </head>
 <body>
 
@@ -158,10 +158,10 @@
             <li><strong>Verdict</strong> Right call, but Q1 2026 was the low point, not the proof</li>
           </ul>
           <div class="featured__actions">
-            <a class="btn btn--solid" href="ups/ups-diagnosis-memo.docx">Read the memo ↓</a>
-            <a class="btn" href="ups/ups-presentation.pptx">Deck ↓</a>
-            <a class="btn" href="ups/ups-model.xlsx">Model ↓</a>
-            <a class="btn btn--ghost" href="ups/ups-interview-guide.docx">Interview guide ↓</a>
+            <a class="btn btn--solid" href="ups/ups-diagnosis-memo.docx" data-preview="Diagnosis memo">Read the memo</a>
+            <a class="btn" href="ups/ups-presentation.pptx" data-preview="Diagnosis deck">Deck</a>
+            <a class="btn" href="ups/ups-model.xlsx" data-preview="Five quarter model">Model</a>
+            <a class="btn btn--ghost" href="ups/ups-interview-guide.docx" data-preview="Interview guide">Interview guide</a>
           </div>
         </div>
 
@@ -382,6 +382,28 @@
     </div>
   </footer>
 
-  <script src="script.js?v=16"></script>
+  <!-- ===== DOCUMENT PREVIEW (opens in place, no download needed) ===== -->
+  <div class="preview" id="previewModal" hidden>
+    <div class="preview__backdrop" data-close></div>
+    <div class="preview__panel" role="dialog" aria-modal="true" aria-labelledby="previewTitle">
+      <header class="preview__bar">
+        <div>
+          <span class="preview__kicker">UPS operational diagnosis</span>
+          <h4 class="preview__title" id="previewTitle">Document</h4>
+        </div>
+        <div class="preview__tools">
+          <a class="btn btn--mini" id="previewOpen" href="#" target="_blank" rel="noopener">Open in new tab ↗</a>
+          <a class="btn btn--mini" id="previewDownload" href="#" download>Download</a>
+          <button class="preview__close" id="previewClose" aria-label="Close preview">&times;</button>
+        </div>
+      </header>
+      <div class="preview__body">
+        <iframe id="previewFrame" title="Document preview" src="about:blank"></iframe>
+        <p class="preview__note" id="previewNote">Loading the document preview…</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js?v=17"></script>
 </body>
 </html>

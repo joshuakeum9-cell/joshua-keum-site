@@ -569,6 +569,100 @@ em { font-style: normal; color: var(--coral-text); }
 }
 .skills li:hover { border-color: var(--primary); }
 
+/* ---------- Document preview modal ---------- */
+.preview[hidden] { display: none; }
+.preview {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(.75rem, 3vw, 2.5rem);
+}
+.preview__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(23, 23, 28, .72);
+  backdrop-filter: blur(2px);
+}
+.preview__panel {
+  position: relative;
+  width: min(1100px, 100%);
+  height: min(88vh, 900px);
+  display: flex;
+  flex-direction: column;
+  background: var(--canvas);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+}
+.preview__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .9rem 1.1rem;
+  border-bottom: 1px solid var(--hairline);
+  flex-wrap: wrap;
+}
+.preview__kicker {
+  font-family: var(--font-mono);
+  font-size: .66rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.preview__title {
+  font-family: var(--font-ui);
+  font-weight: 500;
+  font-size: 1.05rem;
+  letter-spacing: -.01em;
+  color: var(--primary);
+  margin-top: .15rem;
+}
+.preview__tools { display: flex; align-items: center; gap: .45rem; }
+.preview__close {
+  background: none;
+  border: 1px solid var(--hairline);
+  border-radius: 9999px;
+  width: 32px;
+  height: 32px;
+  font-size: 1.2rem;
+  line-height: 1;
+  color: var(--primary);
+  cursor: pointer;
+  transition: background .2s, color .2s, border-color .2s;
+}
+.preview__close:hover { background: var(--primary); border-color: var(--primary); color: #fff; }
+.preview__body { position: relative; flex: 1; background: var(--stone); }
+.preview__body iframe {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+.preview__note {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: grid;
+  place-content: center;
+  text-align: center;
+  padding: 2rem;
+  font-size: .9rem;
+  line-height: 1.6;
+  color: var(--body-muted);
+}
+.preview__note a { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
+body.preview-open { overflow: hidden; }
+@media (max-width: 640px) {
+  .preview__panel { height: 92vh; }
+  .preview__bar { padding: .7rem .8rem; }
+  .preview__tools .btn--mini { padding: 4px 10px; font-size: .72rem; }
+}
+
 /* ---------- Contact footer (near-black band) ---------- */
 .contact {
   background: var(--primary);
