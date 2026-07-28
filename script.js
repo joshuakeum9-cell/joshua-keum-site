@@ -104,11 +104,13 @@ if (navToggle && navLinks) {
 })();
 
 // --- Signature piece: UPS diagnosis exhibit (interactive SVG chart) ---
-// All figures verified against UPS quarterly earnings releases /
-// earnings calls (US Domestic Package segment, Q1 2025 – Q1 2026):
-//   ADV YoY:      -3.5%, -7.3%, -12.3%, -10.8%, -8.0%
-//   RPP YoY:      +4.5%, +5.5%, +9.8%, +8.3%, +6.5%
-//   Adj op margin: 7.0%,  7.0%,  6.4%, 10.2%,  4.0%  (Q4 = holiday peak)
+// Figures match the UPS diagnosis model exactly (US Domestic Package,
+// Q1 2025 to Q1 2026). Margins are adjusted operating profit / revenue.
+//   ADV YoY:       n/a, -7.3%, -12.3%, -10.8%, -8.0%
+//   RPP YoY:      +4.5%,  +5.5%,  +9.8%,  +8.3%, +6.5%
+//   Adj op margin: 7.0%,   7.0%,   6.4%,  10.2%,  4.0%  (Q4 = holiday peak)
+// Q1 2025 volume is null on purpose: the model does not verify it, so the
+// chart shows a gap rather than asserting a number.
 (function () {
   const svg = document.getElementById("exhibitChart");
   const readout = document.getElementById("exhibitReadout");
@@ -119,7 +121,7 @@ if (navToggle && navLinks) {
   const notes = ["", "", "", "holiday peak", ""];
   const series = {
     volume: { name: "Volume", color: "#ffad9b", unit: "% YoY",
-              data: [-3.5, -7.3, -12.3, -10.8, -8.0] },
+              data: [null, -7.3, -12.3, -10.8, -8.0] },
     rpp:    { name: "Rev/piece", color: "#ffffff", unit: "% YoY",
               data: [4.5, 5.5, 9.8, 8.3, 6.5] },
     margin: { name: "Adj. margin", color: "#ff7759", unit: "%",
@@ -168,10 +170,15 @@ if (navToggle && navLinks) {
   for (const key in series) {
     const s = series[key];
     const g = el("g", { "data-series": key });
-    const pts = s.data.map((v, i) => `${x(i)},${y(v)}`).join(" ");
+    // Nulls (unverified quarters) break the line rather than inventing a point
+    const pts = s.data
+      .map((v, i) => (v === null ? null : `${x(i)},${y(v)}`))
+      .filter(Boolean)
+      .join(" ");
     g.appendChild(el("polyline", { points: pts, fill: "none", stroke: s.color,
       "stroke-width": 2.5, "stroke-linejoin": "round", "stroke-linecap": "round" }));
     s.data.forEach((v, i) => {
+      if (v === null) return;
       g.appendChild(el("circle", { cx: x(i), cy: y(v), r: 3.5, fill: s.color }));
     });
     svg.appendChild(g);
@@ -184,7 +191,8 @@ if (navToggle && navLinks) {
   svg.appendChild(marker);
   const baseText = readout.textContent;
 
-  const fmt = (v, unit) => (v > 0 && unit.includes("YoY") ? "+" : "") + v + unit;
+  const fmt = (v, unit) =>
+    v === null ? "n/a" : (v > 0 && unit.includes("YoY") ? "+" : "") + v + unit;
   const show = (i) => {
     marker.setAttribute("x1", x(i));
     marker.setAttribute("x2", x(i));
