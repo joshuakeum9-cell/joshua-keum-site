@@ -223,8 +223,8 @@ em { font-style: normal; color: var(--coral-text); }
    empty space, with a stone panel layered behind for depth. */
 .hero__grid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) clamp(200px, 22vw, 272px);
-  gap: clamp(2rem, 5vw, 4.5rem);
+  grid-template-columns: minmax(0, 1fr) clamp(240px, 27vw, 340px);
+  gap: clamp(2rem, 4.5vw, 4rem);
   align-items: center;
 }
 .hero__portrait {
@@ -738,7 +738,7 @@ body.preview-open { overflow: hidden; }
 
   /* Face first on phones, but compact so the headline stays in view */
   .hero__grid { grid-template-columns: 1fr; gap: 1.4rem; }
-  .hero__portrait { order: -1; width: 104px; }
+  .hero__portrait { order: -1; width: 132px; }
   .hero__portrait::before { display: none; }
   .hero__portrait img { aspect-ratio: 1 / 1; border-radius: var(--r-md); }
 
