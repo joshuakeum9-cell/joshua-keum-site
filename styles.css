@@ -218,13 +218,34 @@ em { font-style: normal; color: var(--coral-text); }
   margin: 0 auto;
   padding: clamp(4rem, 11vw, 8rem) var(--gutter) clamp(2.5rem, 6vw, 4rem);
 }
+/* Hero: copy beside a portrait card so the face reads immediately */
+.hero__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) clamp(210px, 23vw, 285px);
+  gap: clamp(2rem, 4.5vw, 4rem);
+  align-items: start;
+}
+.hero__portrait {
+  margin: 0;
+  animation: riseIn .8s .2s cubic-bezier(.22,.61,.36,1) both;
+}
+.hero__portrait img {
+  width: 100%;
+  height: auto;          /* let aspect-ratio win over the HTML height attribute */
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block;
+  border-radius: var(--r-lg);
+  border: 1px solid var(--card-border);
+}
+
 .hero__headline {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(2.15rem, 5.4vw, 4.2rem);
-  line-height: 1.04;
+  font-size: clamp(2.05rem, 4.1vw, 3.25rem);
+  line-height: 1.06;
   letter-spacing: -.022em;
-  margin: 1.2rem 0;
+  margin: 1.1rem 0;
   max-width: 24ch;
   color: var(--primary);
 }
@@ -712,6 +733,11 @@ body.preview-open { overflow: hidden; }
   }
   .nav__links.open { transform: translateX(0); }
   .nav__links a { font-size: 1.1rem; }
+
+  /* Face first on phones, but compact so the headline stays in view */
+  .hero__grid { grid-template-columns: 1fr; gap: 1.4rem; }
+  .hero__portrait { order: -1; width: 96px; }
+  .hero__portrait img { border-radius: var(--r-md); }
 
   .featured__grid { grid-template-columns: 1fr; }
   .featured__grid--reverse .featured__copy,
