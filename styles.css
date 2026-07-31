@@ -218,25 +218,38 @@ em { font-style: normal; color: var(--coral-text); }
   margin: 0 auto;
   padding: clamp(4rem, 11vw, 8rem) var(--gutter) clamp(2.5rem, 6vw, 4rem);
 }
-/* Hero: copy beside a portrait card so the face reads immediately */
+/* Hero: copy beside a portrait card so the face reads immediately.
+   Centered against the text block so the column does not trail off into
+   empty space, with a stone panel layered behind for depth. */
 .hero__grid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) clamp(210px, 23vw, 285px);
-  gap: clamp(2rem, 4.5vw, 4rem);
-  align-items: start;
+  grid-template-columns: minmax(0, 1fr) clamp(200px, 22vw, 272px);
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: center;
 }
 .hero__portrait {
+  position: relative;
   margin: 0;
   animation: riseIn .8s .2s cubic-bezier(.22,.61,.36,1) both;
 }
+.hero__portrait::before {
+  content: "";
+  position: absolute;
+  inset: 20px -20px -20px 20px;
+  background: var(--stone);
+  border-radius: var(--r-lg);
+  z-index: 0;
+}
 .hero__portrait img {
+  position: relative;
+  z-index: 1;
   width: 100%;
   height: auto;          /* let aspect-ratio win over the HTML height attribute */
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 4 / 5;
   object-fit: cover;
+  object-position: 50% 42%;
   display: block;
   border-radius: var(--r-lg);
-  border: 1px solid var(--card-border);
 }
 
 .hero__headline {
@@ -547,26 +560,15 @@ em { font-style: normal; color: var(--coral-text); }
 /* ---------- About ---------- */
 .about__grid {
   display: grid;
-  grid-template-columns: .8fr 1.2fr;
-  gap: clamp(1.5rem, 5vw, 3.5rem);
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, .7fr);
+  gap: clamp(1.5rem, 5vw, 4rem);
   align-items: start;
 }
-.headshot {
-  position: relative;
-  aspect-ratio: 4/5;
-  border-radius: var(--r-lg);
-  background: var(--stone);
-  border: 1px solid var(--card-border);
-  display: grid;
-  place-content: center;
-  text-align: center;
-  color: var(--muted);
-  gap: .3rem;
-  overflow: hidden;
+.about__side {
+  border-top: 1px solid var(--hairline);
+  padding-top: 1.4rem;
 }
-.headshot span { font-family: var(--font-ui); font-size: 1.2rem; color: var(--primary); }
-.headshot small { font-family: var(--font-mono); font-size: .72rem; }
-.headshot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.about__side .skills__heading:first-child { margin-top: 0; }
 .about__lede { font-size: 1.15rem; line-height: 1.5; margin-bottom: 1rem; color: var(--ink); }
 .about__copy p { color: var(--body-muted); margin-bottom: 1rem; line-height: 1.55; }
 .skills__heading {
@@ -736,15 +738,15 @@ body.preview-open { overflow: hidden; }
 
   /* Face first on phones, but compact so the headline stays in view */
   .hero__grid { grid-template-columns: 1fr; gap: 1.4rem; }
-  .hero__portrait { order: -1; width: 96px; }
-  .hero__portrait img { border-radius: var(--r-md); }
+  .hero__portrait { order: -1; width: 104px; }
+  .hero__portrait::before { display: none; }
+  .hero__portrait img { aspect-ratio: 1 / 1; border-radius: var(--r-md); }
 
   .featured__grid { grid-template-columns: 1fr; }
   .featured__grid--reverse .featured__copy,
   .featured__grid--reverse .featured__interactive { order: 0; }
   .work__grid { grid-template-columns: 1fr; }
   .about__grid { grid-template-columns: 1fr; }
-  .about__photo { max-width: 280px; }
 
   .post {
     grid-template-columns: 1fr;

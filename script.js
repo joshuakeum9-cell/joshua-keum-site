@@ -235,7 +235,7 @@ if (navToggle && navLinks) {
 // Uses simple viewport checks (rAF-throttled) for maximum compatibility.
 (function () {
   const targets = Array.from(document.querySelectorAll(
-    ".section__head, .card, .post, .log__item, .featured__copy, .featured__interactive, .builtwith__card, .about__photo, .about__copy"
+    ".section__head, .card, .post, .log__item, .featured__copy, .featured__interactive, .builtwith__card, .about__copy, .about__side"
   ));
   if (!targets.length) return;
 
